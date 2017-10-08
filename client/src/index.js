@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
+// webpack will automatically assume you are attempting to import
+// from an npm module if you do not provide a relative path
+import 'materialize-css/dist/css/materialize.min.css';
+
 import App from './components/App';
 import reducers from './reducers';
 
