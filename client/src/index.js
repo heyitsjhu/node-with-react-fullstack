@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 
 // webpack will automatically assume you are attempting to import
 // from an npm module if you do not provide a relative path
@@ -14,7 +15,7 @@ import reducers from './reducers';
 // first arg, collection of stores (reducers)
 // second arg, initial state
 // third arg, apply middleware
-const store = createStore(reducers, {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 // first arg: component
 // seconrd arg: destination in public/index.html where component will be rendered
