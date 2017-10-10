@@ -11,8 +11,9 @@ import { FETCH_USER } from "./types";
 // syntax / style via redux-thunk and async/await
 export const fetchUser = () => async dispatch => {
   // axios will return a data object in the returned payload containing the actual response data.
+  // So, usually you can just return res.data - just the response data you're concerned about.
   const res = await axios.get("/api/current_user");
 
   // this is redux-thunk?
-  dispatch({ type: FETCH_USER, payload: res });
+  dispatch({ type: FETCH_USER, payload: res.data });
 };
