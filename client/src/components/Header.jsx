@@ -38,7 +38,7 @@ class Header extends Component {
       <header>
         <nav>
           <div className="nav-wrapper">
-            <a href="#" className="left brand-logo">Welcome</a>
+            <a href="/" className="left brand-logo">Welcome</a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
 
               {this.renderContent()}
