@@ -35,7 +35,7 @@ module.exports = app => {
 
     // instruct passport to kill the current cookie in the browser
     req.logout();
-    res.send(req.user);
+    res.redirect('/');
   });
 
   app.get('/api/current_user', (req, res) => {
