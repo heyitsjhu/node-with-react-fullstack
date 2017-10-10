@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 // hook up component to the redux store
 import { connect } from 'react-redux';
 
+// import use of react-router-dom's Link tag
+// to render a new react router component
+import { Link } from 'react-router-dom';
+
 class Header extends Component {
 
   // methods defined inside this component,
@@ -38,11 +42,15 @@ class Header extends Component {
       <header>
         <nav>
           <div className="nav-wrapper">
-            <a href="/" className="left brand-logo">Welcome</a>
+            <Link
+              to={this.props.auth ? '/surveys' : '/'}
+              className="left brand-logo"
+            >
+              Welcome
+            </Link>
+
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-
               {this.renderContent()}
-
             </ul>
           </div>
         </nav>
