@@ -6,7 +6,7 @@ module.exports = app => {
     '/auth/google',
     /*!
    * Second Argument: passport authentication method which essentially passes
-   * the user's request to passport's oauth workflow. 
+   * the user's request to passport's oauth workflow.
    */
     passport.authenticate(
       // First Argument: the strategy name (or strategy's internal identifier)
@@ -24,7 +24,12 @@ module.exports = app => {
     )
   );
 
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get('/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/surveys');
+    }
+  );
 
   app.get('/api/logout', (req, res) => {
 
