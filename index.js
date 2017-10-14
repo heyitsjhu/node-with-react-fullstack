@@ -1,4 +1,3 @@
-
 /*! - expressjs -- web framework (https://expressjs.com)
  * Express provides a set of features for web apps like routes and middleware
  * Routes, which are derived from HTTP methods, let us request and receive (the response) data from the web.
@@ -7,6 +6,12 @@
  * and passport js - which will be called every time a request is made on our application (app).
  */
 const express = require('express');
+
+/*! - mongoose -- mongoDB schema-based object modeling (http://mongoosejs.com/)
+ * Mongoose is a middleware that helps connect our application to a mondoDB database.
+ * It simplifies the process by providing built-in type casting, validation, query
+ * building, business logic hooks and more, out of the box.
+ */
 const mongoose = require('mongoose');
 
 /*! - cookie-session -- cookie-based session (https://github.com/expressjs/cookie-session)
@@ -20,13 +25,23 @@ const cookieSession = require('cookie-session');
 /*! - passportjs -- authentication (http://passportjs.org)
  * Passport lets you authenticate users through an email/password combo or a third-party provider,
  * such as Facebook, Google, Github, and many more. These are called authentication strategies.
- * You can use any number of strategies in an application.
+ * You can use any number of strategies within an application.
  */
 const passport = require('passport');
 
 
+/*! - keys.js -- configuration and api keys
+ * When we build applications, there is inevitably going to be sensitive information that we don't
+ * want to make public - especially in repos - but need in order for the application to run properly.
+ * Examples include API keys, database information and other keys or hashes. A keys.js file will store
+ * the app's sensitive information, which is then imported here and assigned to a variable - named keys.
+ */
 const keys = require('./config/keys');
 const PORT = process.env.PORT || 5000;
+
+/*!
+ *
+ */
 require('./models/User');
 require('./services/passport');
 

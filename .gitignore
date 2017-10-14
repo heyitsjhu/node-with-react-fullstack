@@ -1,3 +1,5 @@
+# ignore npm packages
 node_modules/
 
-config/dev.js
+# ignore hardcoded api keys and information
+config/development.js
