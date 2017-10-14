@@ -8,9 +8,8 @@
 const express = require('express');
 
 /*! - mongoose -- mongoDB schema-based object modeling (http://mongoosejs.com/)
- * Mongoose is a middleware that helps connect our application to a mondoDB database.
- * It simplifies the process by providing built-in type casting, validation, query
- * building, business logic hooks and more, out of the box.
+ * Mongoose is a middleware that helps connect our application to a mondoDB database. It simplifies the process
+ * by providing built-in type casting, validation, query building, business logic hooks and more, out of the box.
  */
 const mongoose = require('mongoose');
 
@@ -29,7 +28,6 @@ const cookieSession = require('cookie-session');
  */
 const passport = require('passport');
 
-
 /*! - keys.js -- configuration and api keys
  * When we build applications, there is inevitably going to be sensitive information that we don't
  * want to make public - especially in repos - but need in order for the application to run properly.
@@ -38,6 +36,7 @@ const passport = require('passport');
  */
 const keys = require('./config/keys');
 const PORT = process.env.PORT || 5000;
+const authenticationRoutes = require('./routes/authenticationRoutes');
 
 /*!
  *
@@ -67,7 +66,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app);
+app.use('/', authenticationRoutes);
 
 app.listen(PORT, () => {
   console.log('server is running on PORT ' + PORT);

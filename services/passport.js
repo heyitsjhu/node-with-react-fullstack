@@ -15,7 +15,7 @@ const keys = require("../config/keys");
 // pull a model schema out of the database (fetch)
 // User now becomes the model class which can now be
 // used to create a new instance of a user
-const User = mongoose.model("users");
+const User = mongoose.model("user");
 
 // create a unique cookie for a user when he/she signs in
 passport.serializeUser((user, done) => {
@@ -28,7 +28,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-/*! passport.use() 
+/*! passport.use()
  * takes a single argument representing the authentication
  * strategy that passport JS should use to authenticate users.
  * for example: here we're telling passport js to use a Google authentication strategy
@@ -44,8 +44,8 @@ passport.use(
 
       /*! Google Strategy options
        * First Argument: an object containing, at minimum, the clientID, clientSecret and callbackUrl
-       *   the clientID and clientSecret values should correspond to the clientID and clientSecret 
-       *   from your newly created Google api product (see above comment) 
+       *   the clientID and clientSecret values should correspond to the clientID and clientSecret
+       *   from your newly created Google api product (see above comment)
        *   the callbackUrl's value should be the route that the user goes back to once they
        *   grant authentication access through Google's api.
        *   note: the callbackUrl value listed here must be present in your Google api product's
@@ -69,7 +69,7 @@ passport.use(
         // signify to mongo that we're done with the authentication process
         // First Argument: represents any errors; in this case, null
         return done(null, existingUser);
-      } 
+      }
       // profile id not in database; make a new record
       const user = await new User({ googleId: profile.id }).save();
       done(null, user);
