@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders and matches our snapshot 1`] = `
+<header>
+  <nav>
+    <div
+      className="nav-wrapper"
+    >
+      <a
+        className="left brand-logo"
+        href="#"
+      >
+        Welcome
+      </a>
+      <ul
+        className="right hide-on-med-and-down"
+        id="nav-mobile"
+      >
+        <li>
+          <a
+            href="/auth/google"
+          >
+            Login with Google
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+`;
