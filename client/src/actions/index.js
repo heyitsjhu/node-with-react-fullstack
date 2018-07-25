@@ -3,8 +3,8 @@
 // actions typically imported in App.js
 
 // file separation is for organization purposes
-import axios from "axios";
-import { FETCH_USER } from "./types";
+import axios from 'axios';
+import { FETCH_USER } from './types';
 
 // action that fetches a user
 // arrow functions, if you only have one expression, you can remove the {} and return keyword.
@@ -12,8 +12,13 @@ import { FETCH_USER } from "./types";
 export const fetchUser = () => async dispatch => {
   // axios will return a data object in the returned payload containing the actual response data.
   // So, usually you can just return res.data - just the response data you're concerned about.
-  const res = await axios.get("/api/current_user");
+  const res = await axios.get('/api/current_user');
 
   // this is redux-thunk?
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const handleToken = token => async dispatch => {
+  const res = await axios.post('/api/stripe', token);
   dispatch({ type: FETCH_USER, payload: res.data });
 };

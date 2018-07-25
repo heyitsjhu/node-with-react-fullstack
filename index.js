@@ -28,6 +28,8 @@ const cookieSession = require('cookie-session');
  */
 const passport = require('passport');
 
+const bodyParser = require('body-parser');
+
 /*! - keys.js -- configuration and api keys
  * When we build applications, there is inevitably going to be sensitive information that we don't
  * want to make public - especially in repos - but need in order for the application to run properly.
@@ -66,6 +68,10 @@ mongoose.connect(keys.mongoURI, {
 // time, but this is not very common
 const app = express();
 
+/**! app.use is for loading express middleware */
+
+app.use(bodyParser.json());
+
 // instruct express to use cookieSession middleware
 app.use(
   cookieSession({
@@ -82,6 +88,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', authenticationRoutes);
+app.use('/', billingRoutes);
 
 app.listen(PORT, () => {
   console.log('server is running on PORT ' + PORT);
