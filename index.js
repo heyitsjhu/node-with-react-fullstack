@@ -7,7 +7,10 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(
+  keys.mongoURI,
+  { useMongoClient: true }
+);
 
 // calling express creates an instance of an express application
 // you can have multiple application instances running at the same
@@ -20,9 +23,9 @@ app.use(
     // how long the cookie with exist before it effectively expires
     maxAge: 30 * 24 * 60 * 60 * 1000,
     // key(s) to be used to sign or encrypt the cookie
-    // if multiple keys are given, express will pick and use one to 
+    // if multiple keys are given, express will pick and use one to
     // encrypt the cookie
-    keys: [keys.cookieKey] 
+    keys: [keys.cookieKey],
   })
 );
 

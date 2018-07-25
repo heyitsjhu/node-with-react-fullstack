@@ -1,21 +1,21 @@
 // user authentication middleware
-const passport = require("passport");
+const passport = require('passport');
 
 // passport JS authentication strategy for Google accounts
 // note: we only need the Strategy property from the module
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 // mongoDB middleware for creating and saving models
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // import the collection of keys object from keys.js in the config
 // folder and assign that object to our keys constant variable
-const keys = require("../config/keys");
+const keys = require('../config/keys');
 
 // pull a model schema out of the database (fetch)
 // User now becomes the model class which can now be
 // used to create a new instance of a user
-const User = mongoose.model("users");
+const User = mongoose.model('users');
 
 // create a unique cookie for a user when he/she signs in
 passport.serializeUser((user, done) => {
@@ -53,8 +53,8 @@ passport.use(
        */
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback",
-      proxy: true
+      callbackURL: '/auth/google/callback',
+      proxy: true,
     },
     /*!
      * Second Argument: callback function
@@ -69,7 +69,7 @@ passport.use(
         // signify to mongo that we're done with the authentication process
         // First Argument: represents any errors; in this case, null
         return done(null, existingUser);
-      } 
+      }
       // profile id not in database; make a new record
       const user = await new User({ googleId: profile.id }).save();
       done(null, user);
