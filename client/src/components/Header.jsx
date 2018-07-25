@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 // to render a new react router component
 import { Link } from 'react-router-dom';
 
-class Header extends Component {
+import Payments from './Payments';
 
+class Header extends Component {
   // methods defined inside this component,
   // but outside of built-in react functions,
   // are classified as helper methods
@@ -27,18 +28,20 @@ class Header extends Component {
         );
       // user is logged in
       default:
-        return (
-          <li>
+        return [
+          <li key={1}>
+            <Payments />
+          </li>,
+          <li key={2}>
             <a href="/api/logout">Logout</a>
           </li>
-        );
+        ];
     }
   }
 
-
   render() {
     console.log(this.props);
-    return(
+    return (
       <header>
         <nav>
           <div className="nav-wrapper">
@@ -55,7 +58,7 @@ class Header extends Component {
           </div>
         </nav>
       </header>
-    )
+    );
   }
 }
 

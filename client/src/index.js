@@ -24,6 +24,6 @@ ReactDOM.render(
   // making the redux stores accessible to every component in the app
   <Provider store={store}>
     <App />
-  </Provider>
-  , document.querySelector('#root')
+  </Provider>,
+  document.querySelector('#root')
 );

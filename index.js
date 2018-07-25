@@ -57,7 +57,9 @@ const authenticationRoutes = require('./routes/authenticationRoutes');
 // require('./models/User');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+  useMongoClient: true
+});
 
 // calling express creates an instance of an express application
 // you can have multiple application instances running at the same
