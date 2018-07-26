@@ -91,6 +91,19 @@ app.use(passport.session());
 app.use('/', authenticationRoutes);
 app.use('/', billingRoutes);
 
+// production configuration to properly handle client-side routes
+if (process.env.NODE_ENV === 'production') {
+  //TODO: express serves react production assets (js, css, etc)
+  app.use(express.static('client/build')); // points to react folder's build (dist) assets
+  //TODO: express serve index.html if route requested in not found
+  // wildcard route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    // defers all unknown server-side routes to the client-side code via index.html file in the client build folder
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 app.listen(PORT, () => {
   console.log('server is running on PORT ' + PORT);
 });
