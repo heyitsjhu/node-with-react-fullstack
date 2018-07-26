@@ -32,8 +32,10 @@ const userSchema = new Schema({
   /*!
    * To learn more about the available data from Google's API, visit:
    */
-  googleId: String
-})
+  googleId: String,
+  // TODO: talk about setting a default value and using an object when declaring multiple options
+  credits: { type: Number, default: 0 }
+});
 
 /*! - mongoose model
  * Defining a schema is just the first step in managing a database in the application.

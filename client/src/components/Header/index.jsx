@@ -13,8 +13,9 @@ class Header extends Component {
   // methods defined inside this component,
   // but outside of built-in react functions,
   // are classified as helper methods
-
   renderContent() {
+    //TODO: explain this.props.auth and what it returns
+    //TODO: explain conditional rendering of elements
     switch (this.props.auth) {
       // unsure if user is logged in (still pending)
       case null:
@@ -32,7 +33,10 @@ class Header extends Component {
           <li key={1}>
             <Payments />
           </li>,
-          <li key={2}>
+          <li key={2} style={{ margin: '0 15px' }}>
+            <span>Credits: {this.props.auth.credits}</span>
+          </li>,
+          <li key={3}>
             <a href="/api/logout">Logout</a>
           </li>
         ];
