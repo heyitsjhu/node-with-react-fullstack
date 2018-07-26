@@ -1,0 +1,13 @@
+import React from 'react';
+
+// functional component
+const Landing = () => {
+  return(
+    <div style={{ textAlign: 'center' }}>
+      <h1>Node with React Fullstack</h1>
+      <p>Collect feedback from your users</p>
+    </div>
+  )
+}
+
+export default Landing;
