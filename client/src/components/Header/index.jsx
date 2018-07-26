@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 // to render a new react router component
 import { Link } from 'react-router-dom';
 
-import Payments from './Payments';
+import Payments from '../Payments';
 
 class Header extends Component {
   // methods defined inside this component,
