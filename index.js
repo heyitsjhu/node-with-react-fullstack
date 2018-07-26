@@ -59,16 +59,9 @@ const authenticationRoutes = require('./routes/authenticationRoutes');
 // require('./models/User');
 require('./services/passport');
 
-<<<<<<< HEAD
-mongoose.connect(
-  keys.mongoURI,
-  { useMongoClient: true }
-);
-=======
 mongoose.connect(keys.mongoURI, {
   useMongoClient: true
 });
->>>>>>> efa6fb66dfd345846a23dcde8a1c7e03513f63ae
 
 // calling express creates an instance of an express application
 // you can have multiple application instances running at the same
@@ -87,11 +80,7 @@ app.use(
     // key(s) to be used to sign or encrypt the cookie
     // if multiple keys are given, express will pick and use one to
     // encrypt the cookie
-<<<<<<< HEAD
-    keys: [keys.cookieKey],
-=======
     keys: [keys.cookieKey]
->>>>>>> efa6fb66dfd345846a23dcde8a1c7e03513f63ae
   })
 );
 
