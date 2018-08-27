@@ -58,11 +58,15 @@ const billingRoutes = require('./routes/billingRoutes');
  *
  */
 // require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI, {
-  useMongoClient: true
-});
+mongoose.connect(
+  keys.mongoURI,
+  {
+    useMongoClient: true
+  }
+);
 
 // calling express creates an instance of an express application
 // you can have multiple application instances running at the same
