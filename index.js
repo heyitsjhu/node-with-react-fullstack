@@ -53,6 +53,7 @@ const keys = require('./config/keys');
 const PORT = process.env.PORT || 5000;
 const authenticationRoutes = require('./routes/authenticationRoutes');
 const billingRoutes = require('./routes/billingRoutes');
+const surveyRoutes = require('./routes/surveyRoutes');
 
 /*!
  *
@@ -94,6 +95,7 @@ app.use(passport.session());
 
 app.use('/', authenticationRoutes);
 app.use('/', billingRoutes);
+app.use('/', surveyRoutes);
 
 // production configuration to properly handle client-side routes
 if (process.env.NODE_ENV === 'production') {
