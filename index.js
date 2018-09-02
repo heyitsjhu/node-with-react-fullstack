@@ -38,6 +38,13 @@ const bodyParser = require('body-parser');
  */
 const keys = require('./config/keys');
 
+mongoose.connect(
+  keys.mongoURI,
+  {
+    useMongoClient: true
+  }
+);
+
 /*! - PORT
  * A port is defined as a communication endpoint and is always associated with an IP address of a host
  * and the protocol type of the communication. For example, on most local environments, the host is
@@ -51,9 +58,6 @@ const keys = require('./config/keys');
  * result, port 5000 will be assigned to the constant variable.
  */
 const PORT = process.env.PORT || 5000;
-const authenticationRoutes = require('./routes/authenticationRoutes');
-const billingRoutes = require('./routes/billingRoutes');
-const surveyRoutes = require('./routes/surveyRoutes');
 
 /*!
  *
@@ -62,12 +66,9 @@ const surveyRoutes = require('./routes/surveyRoutes');
 require('./models/Survey');
 require('./services/passport');
 
-mongoose.connect(
-  keys.mongoURI,
-  {
-    useMongoClient: true
-  }
-);
+const authenticationRoutes = require('./routes/authenticationRoutes');
+const billingRoutes = require('./routes/billingRoutes');
+const surveyRoutes = require('./routes/surveyRoutes');
 
 // calling express creates an instance of an express application
 // you can have multiple application instances running at the same

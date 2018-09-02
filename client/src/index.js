@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
+import './logger.js';
 
 // webpack will automatically assume you are attempting to import
 // from an npm module if you do not provide a relative path
