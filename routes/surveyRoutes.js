@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const requireCredits = require('../middlewares/requireCredits');
 const requireLogin = require('../middlewares/requireLogin');
+const Mailer = require('../services/Mailer');
+const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 /** import Survey model class */
 const Survey = mongoose.model('survey');
@@ -27,6 +29,11 @@ router.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     _user: req.user.id,
     dateSent: Date.now()
   });
+
+  /**
+   * Instantiate a new Mailer instance to handle our SendGrid Mail
+   */
+  const mailer = new Mailer(survey, surveyTemplate(survery));
 });
 
 module.exports = router;
