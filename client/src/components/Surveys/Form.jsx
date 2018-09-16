@@ -2,23 +2,28 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import SurveyField from '../Form/Field';
+import validateEmails from '../../utils/validateEmails';
 
 const FIELDS = [
   {
     label: 'Survey Title',
-    name: 'title'
+    name: 'title',
+    error: 'You must provide a title'
   },
   {
     label: 'Subject Line',
-    name: 'subject'
+    name: 'subject',
+    error: 'You must provide a subject'
   },
   {
     label: 'Email Body',
-    name: 'body'
+    name: 'body',
+    error: 'You must provide a body'
   },
   {
     label: 'Recipient List',
-    name: 'emails'
+    name: 'emails',
+    error: 'You must provide a list of recipients'
   }
 ];
 
@@ -58,7 +63,22 @@ class SurveyForm extends Component {
   }
 }
 
+const validate = values => {
+  const errors = {};
+
+  errors.emails = validateEmails(values.emails);
+
+  FIELDS.forEach(({ name, error }) => {
+    if (!values[name]) {
+      errors[name] = error;
+    }
+  });
+
+  return errors;
+};
+
 // explain redux form function and options object
 export default reduxForm({
-  form: 'surveyForm'
+  form: 'surveyForm',
+  validate
 })(SurveyForm);
