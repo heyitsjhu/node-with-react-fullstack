@@ -13,6 +13,14 @@ router.get('/api/surveys/thanks', (req, res) => {
   res.send('Thanks for voting!');
 });
 
+// TODO: Explain this api call that sendgrid uses and the user
+// needs to setup in their sendgrid account, in the Event Notification section
+// under Mail Settings in their dashboard, and select what notifications they want (clicks)
+router.post('/api/surveys/webhooks', (req, res) => {
+  console.log(req.body);
+  res.send({}); // close out request with sendgrid
+});
+
 /**
  * TODO: Explain the chaining of middleware and why the order is important
  */

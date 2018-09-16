@@ -44,6 +44,12 @@ class Mailer extends helper.Mail {
 
   /**
    * TODO: Explain this or point to SendGrid documentation
+   * TODO: Also, need to explain Local Tunnel npm package
+   * and how we need to setup a custom webhook url for sendgrid to
+   * send its notifications to our local server.
+   * Mine is: https://damp-meadow-38518.localtunnel.me
+   * In Sendgrid, the user needs to go to Mail Setting in the Sendgrid dashboard,
+   *
    */
   addClickTracking() {
     const trackingSettings = new helper.TrackingSettings();
