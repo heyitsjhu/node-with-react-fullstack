@@ -17,7 +17,6 @@
   "repository": "heyitsjhu/node-with-react-fullstack",
   "license": "ISC",
   "dependencies": {
-    "@sendgrid/mail": "^6.3.1",
     "body-parser": "^1.18.3",
     "concurrently": "^3.5.0",
     "cookie-session": "^1.3.2",
@@ -27,6 +26,7 @@
     "nodemon": "^1.17.5",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "sendgrid": "^5.2.3",
     "stripe": "^6.3.0"
   }
 }

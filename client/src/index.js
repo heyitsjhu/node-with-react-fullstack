@@ -12,6 +12,9 @@ import 'materialize-css/dist/css/materialize.min.css';
 import App from './components/App';
 import reducers from './reducers';
 
+import axios from 'axios';
+window.axios = axios;
+
 // create a store
 // first arg, collection of stores (reducers)
 // second arg, initial state

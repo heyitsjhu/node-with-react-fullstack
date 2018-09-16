@@ -1,4 +1,4 @@
-const sendgrid = require('@sendgrid/mailer');
+const sendgrid = require('sendgrid');
 const helper = sendgrid.mail;
 const keys = require('../config/keys');
 
@@ -75,7 +75,8 @@ class Mailer extends helper.Mail {
       body: this.toJSON()
     });
 
-    const response = this.sgApi.API(request); // sends off the request via API function from sendgrid; returns a response
+    // sends off the request via API function from sendgrid; returns a response
+    const response = await this.sgApi.API(request);
     return response;
   }
 }
