@@ -11,7 +11,7 @@ import Logger from 'js-logger';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-const SurveyNew = () => <h2>Survey New</h2>;
+import SurveyNew from './Surveys/New';
 
 class App extends Component {
   // lifecycle method to fetch user
