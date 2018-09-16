@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 import FIELDS from './_formSchema';
 
 // TODO: explain class and functional components
 // TODO: iterating form fields from file to display labels
-const SurveyFormReview = ({ onBackToEdit, formData, submitSurvey }) => {
+const SurveyFormReview = ({
+  onBackToEdit,
+  formData,
+  submitSurvey,
+  history
+}) => {
   console.log(formData);
 
   const reviewFields = FIELDS.map(({ label, name }) => (
@@ -28,7 +34,7 @@ const SurveyFormReview = ({ onBackToEdit, formData, submitSurvey }) => {
       <button
         className="green white-text btn-flat right"
         onClick={() => {
-          submitSurvey(formData);
+          submitSurvey(formData, history);
         }}
       >
         Send Survey
@@ -49,4 +55,5 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   actions
-)(SurveyFormReview);
+)(withRouter(SurveyFormReview));
+// TODO: Explain withRouter and why we need it here to "know" about the history object provided by react router via props(SurveyFormReview);

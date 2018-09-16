@@ -14,7 +14,7 @@ export const fetchUser = () => async dispatch => {
   // So, usually you can just return res.data - just the response data you're concerned about.
   const res = await axios.get('/api/current_user');
 
-  // this is redux-thunk?
+  // this is redux-thunk? <-- no it's not :D
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
@@ -24,6 +24,11 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitSurvey = values => {
-  return { type: 'SUBMIT_SURVEY' };
+//TODO: explain what history object is (react router)
+export const submitSurvey = (values, history) => async dispatch => {
+  //TODO: explain the response is what we determined in the routes file in express
+  const res = await axios.post('/api/surveys', values);
+
+  history.push('/dashboard');
+  dispatch({ type: 'FETCH_USER', payload: res.data });
 };

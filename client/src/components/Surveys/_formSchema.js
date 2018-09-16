@@ -16,7 +16,7 @@ const FIELDS = [
   },
   {
     label: 'Recipient List',
-    name: 'emails',
+    name: 'recipients',
     error: 'You must provide a list of recipients'
   }
 ];

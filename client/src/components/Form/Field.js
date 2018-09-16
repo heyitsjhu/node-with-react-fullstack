@@ -6,7 +6,7 @@ import React from 'react';
 // TODO: explain meta prop from reduxForm (validations, touch, etc)
 export default ({ input, label, meta: { error, touched } }) => {
   return (
-    <div>
+    <div style={{ marginBottom: '10px' }}>
       <label>{label}</label>
       <input {...input} style={{ marginBottom: '5px' }} />
       {touched && (

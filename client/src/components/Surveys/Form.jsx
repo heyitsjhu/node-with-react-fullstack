@@ -44,7 +44,7 @@ class SurveyForm extends Component {
 const validate = values => {
   const errors = {};
 
-  errors.emails = validateEmails(values.emails);
+  errors.recipients = validateEmails(values.recipients);
 
   FIELDS.forEach(({ name, error }) => {
     if (!values[name]) {
@@ -56,6 +56,15 @@ const validate = values => {
 };
 
 // explain redux form function and options object
+// explain why destryoOnUnmount: false saves the data
+// and why not declaring this in the New component
+// will let use clear the data when unmounted
+// this is related to toggling between child elements
+// while still within a parent component that uses
+// redux-form. For example, we only navigated between Form and
+// Review while within New. When we do this, we tell it not
+// to clear the data. But once we're done with the form altogether
+// --for example, when we leave the New compoennt, then we clear it out
 export default reduxForm({
   form: 'surveyForm',
   validate,

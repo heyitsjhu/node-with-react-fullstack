@@ -45,6 +45,7 @@ router.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     req.user.credits -= 1;
     const user = await req.user.save();
 
+    // sends back the user data so we can show the updated credits
     res.send(user);
   } catch (err) {
     res.status(422).send(err);
