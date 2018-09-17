@@ -2,6 +2,7 @@
 import { combineReducers } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 import authReducer from './authReducer';
+import surveysReducer from './surveysReducer';
 
 // combines a collection of reducers into a single object.
 export default combineReducers({
@@ -9,5 +10,6 @@ export default combineReducers({
   // that exist in the application's state object
   // put some thought into these!
   auth: authReducer,
-  form: reduxFormReducer
+  form: reduxFormReducer,
+  surveys: surveysReducer,
 });

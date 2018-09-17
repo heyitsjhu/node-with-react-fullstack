@@ -4,7 +4,7 @@
 
 // file separation is for organization purposes
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_SURVEYS } from './types';
 
 // action that fetches a user
 // arrow functions, if you only have one expression, you can remove the {} and return keyword.
@@ -16,6 +16,12 @@ export const fetchUser = () => async dispatch => {
 
   // this is redux-thunk? <-- no it's not :D
   dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const fetchSurveys = () => async dispatch => {
+  const res = await axios.get('/api/surveys');
+
+  dispatch({ type: FETCH_SURVEYS, payload: res.data });
 };
 
 //TODO: talk about how dispatching causes the state to update, capturing new user credits
