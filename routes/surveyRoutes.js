@@ -11,6 +11,10 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 /** import Survey model class */
 const Survey = mongoose.model('survey');
 
+router.get('/api/surveys/:surveyId/:choice', (req, res) => {
+  res.send('Thanks for voting, yo!');
+});
+
 // TODO: Explain this api call that sendgrid uses and the user
 // needs to setup in their sendgrid account, in the Event Notification section
 // under Mail Settings in their dashboard, and select what notifications they want (clicks)
@@ -43,14 +47,15 @@ router.post('/api/surveys/webhooks', (req, res) => {
         // given the $elemMatch (Mongo operator) criteria/condition
         recipients: {
           // Mongo operator?
-          $elemMatch: { email: email, responded: false }
-        }
+          $elemMatch: { email: email, responded: false },
+        },
       },
       {
         // $inc Mongo operator [increment]
         $inc: { [choice]: 1 },
         // $set - look at recipients subdoc, $ - refers to $elemMatch from previous argument, set the responded property to true
-        $set: { 'recipients.$.responded': true }
+        $set: { 'recipients.$.responded': true },
+        lastResponded: new Date(),
       }
     ).exec(); // execute our updateOne query;
   });
@@ -61,6 +66,16 @@ router.post('/api/surveys/webhooks', (req, res) => {
   console.log('events', events);
 
   res.send();
+});
+
+router.get('/api/surveys', requireLogin, async (req, res) => {
+  // look into our survey collection in mlab and find all surveys that match the current user
+  // controlling what we retrieve from mlab (ie, excluding recipients list, which isn't needed)
+  const surveys = await Survey.find({ _user: req.user.id }).select({
+    recipients: false,
+  });
+
+  res.send(surveys);
 });
 
 /**
@@ -78,10 +93,10 @@ router.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     subject,
     body,
     recipients: recipients.split(',').map(email => ({
-      email: email.trim()
+      email: email.trim(),
     })),
     _user: req.user.id,
-    dateSent: Date.now()
+    dateSent: Date.now(),
   });
 
   /**
